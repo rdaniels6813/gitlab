@@ -19,7 +19,7 @@
     "@semantic-release/error": "^2.2.0",
     "aggregate-error": "^2.0.0",
     "debug": "^4.0.0",
-    "dir-glob": "^2.0.0",
+    "dir-glob": "^2.2.1",
     "escape-string-regexp": "^1.0.5",
     "form-data": "^2.3.3",
     "fs-extra": "^7.0.1",
