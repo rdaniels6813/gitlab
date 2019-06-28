@@ -65,7 +65,7 @@ test.serial('Publish a release with assets', async t => {
     .reply(200, uploaded);
   const gitlabAssetLink = authenticate(env)
     .post(`/projects/${encodedRepoId}/releases/${encodedGitTag}/assets/links`, {
-      url: `https://gitlab.com${uploaded.url}`,
+      url: `https://gitlab.com/${owner}/${repo}${uploaded.url}`,
       name: uploaded.alt,
     })
     .reply(200, {});
@@ -128,7 +128,7 @@ test.serial('Publish a release with one asset and custom label', async t => {
     .reply(200, uploaded);
   const gitlabAssetLink = authenticate(env)
     .post(`/projects/${encodedRepoId}/releases/${encodedGitTag}/assets/links`, {
-      url: `https://gitlab.com${uploaded.url}`,
+      url: `https://gitlab.com/${owner}/${repo}${uploaded.url}`,
       name: assetLabel,
     })
     .reply(200, {});
