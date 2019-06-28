@@ -64,7 +64,10 @@ test.serial('Publish a release with assets', async t => {
     .post(`/projects/${encodedRepoId}/uploads`, /filename="file.css"/gm)
     .reply(200, uploaded);
   const gitlabAssetLink = authenticate(env)
-    .post(`/projects/${encodedRepoId}/releases/${encodedGitTag}/assets/links`, {url: uploaded.url, name: uploaded.alt})
+    .post(`/projects/${encodedRepoId}/releases/${encodedGitTag}/assets/links`, {
+      url: `https://gitlab.com${uploaded.url}`,
+      name: uploaded.alt,
+    })
     .reply(200, {});
 
   const result = await publish({assets}, {env, cwd, options, nextRelease, logger: t.context.logger});
@@ -124,7 +127,10 @@ test.serial('Publish a release with one asset and custom label', async t => {
     .post(`/projects/${encodedRepoId}/uploads`, /filename="upload.txt"/gm)
     .reply(200, uploaded);
   const gitlabAssetLink = authenticate(env)
-    .post(`/projects/${encodedRepoId}/releases/${encodedGitTag}/assets/links`, {url: uploaded.url, name: assetLabel})
+    .post(`/projects/${encodedRepoId}/releases/${encodedGitTag}/assets/links`, {
+      url: `https://gitlab.com${uploaded.url}`,
+      name: assetLabel,
+    })
     .reply(200, {});
 
   const result = await publish({assets}, {env, cwd, options, nextRelease, logger: t.context.logger});
