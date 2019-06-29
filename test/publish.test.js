@@ -51,8 +51,8 @@ test.serial('Publish a release with assets', async t => {
   const options = {repositoryUrl: `https://gitlab.com/${owner}/${repo}.git`};
   const encodedRepoId = encodeURIComponent(`${owner}/${repo}`);
   const encodedGitTag = encodeURIComponent(nextRelease.gitTag);
-  const uploaded = {markdown: '[file.css](/uploads/file.css)', url: '/uploads/file.css', alt: 'file.css'};
-  const notes = `${nextRelease.notes}\n\n#### Assets\n\n* ${uploaded.markdown}`;
+  const uploaded = {url: '/uploads/file.css', alt: 'file.css'};
+  const notes = `${nextRelease.notes}`;
   const assets = [['**', '!**/*.txt', '!.dotfile']];
   const gitlab = authenticate(env)
     .post(`/projects/${encodedRepoId}/repository/tags/${encodedGitTag}/release`, {
@@ -113,9 +113,9 @@ test.serial('Publish a release with one asset and custom label', async t => {
   const options = {repositoryUrl: `https://gitlab.com/${owner}/${repo}.git`};
   const encodedRepoId = encodeURIComponent(`${owner}/${repo}`);
   const encodedGitTag = encodeURIComponent(nextRelease.gitTag);
-  const uploaded = {markdown: '[file](/uploads/upload.txt)', url: '/uploads/upload.txt'};
+  const uploaded = {url: '/uploads/upload.txt'};
   const assetLabel = 'Custom Label';
-  const notes = `${nextRelease.notes}\n\n#### Assets\n\n* [${assetLabel}](${uploaded.url})`;
+  const notes = `${nextRelease.notes}`;
   const assets = [{path: 'upload.txt', label: assetLabel}];
   const gitlab = authenticate(env)
     .post(`/projects/${encodedRepoId}/repository/tags/${encodedGitTag}/release`, {
